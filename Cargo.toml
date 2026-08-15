@@ -1,0 +1,31 @@
+[package]
+name = "mcpg-tunnel-agent"
+version = "0.1.0-beta.13"
+license = "Apache-2.0"
+edition = "2024"
+description = """
+The tunnel agent's request engine: the accept loop that turns
+each tunnel-borne MCP request back into an `http::Request`, injects the
+relay-attested origin (ConnectInfo + a caller-supplied decorator for TLS),
+drives it through the gateway's own axum `Router` via `oneshot`, and streams
+the response — including SSE — back down the tunnel. Runs the full gateway
+request path with no local TCP listener.
+"""
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+mcpg-tunnel-proto = { git = "https://github.com/mcpg-dev/mcpg-tunnel-proto", tag = "v0.1.0-beta.13", version = "=0.1.0-beta.13" }
+axum = "0.8"
+http = "1"
+http-body-util = "0.1"
+tower = { version = "0.5", features = ["util"] }
+bytes = "1"
+tokio = { version = "1", features = ["rt", "macros"] }
+tracing = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "io-util", "time"] }
+axum = "0.8"
+futures = "0.3"
