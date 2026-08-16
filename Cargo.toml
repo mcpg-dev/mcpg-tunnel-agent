@@ -1,6 +1,6 @@
 [package]
 name = "mcpg-tunnel-agent"
-version = "0.1.0-beta.13"
+version = "0.1.0-beta.14"
 license = "Apache-2.0"
 edition = "2024"
 description = """
@@ -16,7 +16,7 @@ request path with no local TCP listener.
 crate-type = ["rlib"]
 
 [dependencies]
-mcpg-tunnel-proto = { git = "https://github.com/mcpg-dev/mcpg-tunnel-proto", tag = "v0.1.0-beta.13", version = "=0.1.0-beta.13" }
+mcpg-tunnel-proto = { git = "https://github.com/mcpg-dev/mcpg-tunnel-proto", tag = "v0.1.0-beta.14", version = "=0.1.0-beta.14" }
 axum = "0.8"
 http = "1"
 http-body-util = "0.1"
