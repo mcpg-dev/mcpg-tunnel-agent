@@ -43,8 +43,13 @@ dropped with a warning.
 Malformed input degrades rather than escalating: a header whose name or value
 will not parse is skipped instead of failing the request, a stream that closes
 before its head is treated as a benign abort, and a client abort mid-body drops
-the request. An out-of-order frame — a body chunk before a head, say — is a
-protocol violation and is reported as one.
+the request. Once the body is read the relay sends nothing more on the stream,
+so anything that arrives after it (the relay's reset when the public client
+went away or the response head came too late) drops the request too, whether
+the router is still running it or its response is still streaming: the same
+cancellation a direct client's disconnect causes. The stream then stops
+counting against the session's stream limit. An out-of-order frame — a body
+chunk before a head, say — is a protocol violation and is reported as one.
 
 ## Security
 
