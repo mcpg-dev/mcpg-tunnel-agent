@@ -75,13 +75,12 @@ extensions but is not responsible for origin attribution.
 
 ## Usage
 
-The crate is not published to crates.io; depend on it by path from within this
-workspace.
+Consume both crates by git reference:
 
 ```toml
 [dependencies]
-mcpg-tunnel-agent = { path = "../tunnel-agent" }
-mcpg-tunnel-proto = { path = "../tunnel-proto" }
+mcpg-tunnel-agent = { git = "https://github.com/mcpg-dev/mcpg-tunnel-agent", tag = "<release-tag>" }
+mcpg-tunnel-proto = { git = "https://github.com/mcpg-dev/mcpg-tunnel-proto", tag = "<release-tag>" }
 ```
 
 ```rust
